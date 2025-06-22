@@ -11,6 +11,9 @@ export class User {
   @Prop({ required: true })
   password: string;
 
+  @Prop({ default: 'user', enum: ['user', 'admin', 'distributor'] })
+  role: string;
+
   @Prop()
   refreshToken?: string;
   _id: Types.ObjectId;

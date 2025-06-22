@@ -19,7 +19,11 @@ export class AuthService {
   }
 
   async login(user: UserDocument) {
-    const payload: JwtPayload = { sub: user._id.toString(), email: user.email };
+    const payload: JwtPayload = {
+      sub: user._id.toString(),
+      email: user.email,
+      role: user.role,
+    };
     const accessToken = this.jwt.sign(payload, { expiresIn: '15m' });
     const refreshToken = this.jwt.sign(payload, { expiresIn: '7d' });
 
