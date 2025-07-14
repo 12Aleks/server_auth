@@ -17,4 +17,7 @@ export class ItemsService {
   async getAll(): Promise<Item[]> {
     return await this.itemsModel.find();
   }
+  async findOne(id: string): Promise<Item> {
+    return this.itemsModel.findOne({ _id: id });
+  }
 }

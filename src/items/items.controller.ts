@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ItemsService } from './items.service';
 import { ItemDto } from './dto/item.dto';
 import { Roles } from '../auth/decorators/roles.decorator';
@@ -17,5 +17,11 @@ export class ItemsController {
   @Get()
   async getAll() {
     return this.itemService.getAll();
+  }
+
+  @Roles('distributor', 'admin')
+  @Get(':id')
+  async getOne(@Param('id') id: string) {
+    return this.itemService.findOne(id);
   }
 }
